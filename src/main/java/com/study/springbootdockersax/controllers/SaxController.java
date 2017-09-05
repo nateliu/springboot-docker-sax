@@ -2,6 +2,7 @@ package com.study.springbootdockersax.controllers;
 
 import com.study.springbootdockersax.entities.Student;
 import com.study.springbootdockersax.utilities.SaxParseXml;
+import com.study.springbootdockersax.utilities.ZipUnzip;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.Resource;
@@ -24,12 +25,13 @@ public class SaxController {
         SAXParser parser = null;
         String content = null;
         try {
+            ZipUnzip.unZipIt("/Users/jinlliu/github/springboot-docker-sax/src/main/resources/student.xml.zip","/Users/jinlliu/github/springboot-docker-sax/src/main/resources/");
             ApplicationContext appContext = new ClassPathXmlApplicationContext();
 //            Resource resource = appContext.getResource("classpath:student.xml");
 //            Resource resource = appContext.getResource("url:https://nateliu.github.io/student.xml");
-//            Resource resource = appContext.getResource(
-//                    "file:/Users/jinlliu/github/springboot-docker-sax/src/main/resources/student.xml");
-            Resource resource = appContext.getResource("file:/tmp/student.xml");
+            Resource resource = appContext.getResource(
+                    "file:/Users/jinlliu/github/springboot-docker-sax/src/main/resources/student.xml");
+//            Resource resource = appContext.getResource("file:/tmp/student.xml");
 
             parser = SAXParserFactory.newInstance().newSAXParser();
             SaxParseXml parseXml = new SaxParseXml();
